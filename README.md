@@ -60,13 +60,13 @@ Keeps a running group id so adjacent tokens with same entity label map to the sa
 2. Clean text & drop empties.  
 3. Token align: builds start/end per cleaned token and merges with doc.to_json() tokens from model_ner(content).  
 4. Keep only non-O labels → convert B-NAME/I-NAME → NAME etc.  
-5. Group & bbox:  
+5. Group & bbox:
 - For each group, compute min/max over left, top, right, bottom.  
 - Draw rectangles and labels via cv2.rectangle and cv2.putText.  
-6. Aggregate entities:   
-- BIO logic stitches multi-token fields:  
+6. Aggregate entities:
+- BIO logic stitches multi-token fields:
   - For NAME, ORG, DES: join with spaces.  
   - For PHONE, EMAIL, WEB: concatenate (no extra space), then parser cleans them.  
-7. Returns:   
+7. Returns:
 - Annotated image (PIL.Image.fromarray(img_bb))  
 - Entities dict: {"NAME":[], "ORG":[], "DES":[], "PHONE":[], "EMAIL":[], "WEB":[], "ADD":[]}  
